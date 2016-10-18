@@ -1,0 +1,8 @@
+Rich Internet Applications
+    UI logic to client browser 
+        (User interaction (controller), HTML generation (view), application state(model))
+    More Responsive (Better User Experience)
+
+MANAGABLE
+
+
