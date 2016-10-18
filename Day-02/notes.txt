@@ -6,3 +6,14 @@ Rich Internet Applications
 MANAGABLE
 
 
+View and Model
+    View uses Model
+
+        public aspects of Model (loosely coupled, preferred)
+            public attributes
+            public behaviors (methods)
+
+        private aspects of Model (tightly coupled, NOT preferred)
+            aware of the internal functioning of Model
+            takes decisions based on the inner functionting of Model
+
