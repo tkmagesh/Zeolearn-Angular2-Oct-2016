@@ -1,0 +1,52 @@
+Type Script
+============
+    Superset of JavaScript
+        Code in TypeScript -> compile to JS
+
+Nature of JavaScript
+====================
+Procedural
+Object Oriented
+Object Based
+Functional (JS)
+    Functions are first class citizens
+        Functions are objects
+            - created like objects
+            - have attributes like objects
+            - have methods like objects
+            - passed as argument to other Function
+            - returned as a return value from another function
+
+
+
+Static
+Dynamic (JS)
+    - Attributes can be added to objects at runtime
+    - Attributes can be remove from objects at runtime
+    - Methods can be added to objects at runtime
+    - Methods can be remove from objects at runtime
+
+
+
+Strongly Typed
+Loosely Typed (JS)
+
+Uncertainity
+
+TypeScript (typesafe javascript)
+    Aid development
+    TypeScript Compiler
+    -> javascript
+
+
+
+node --version
+
+Mac
+sudo npm install typescript -g
+
+windows
+npm install typescript -g
+
+
+

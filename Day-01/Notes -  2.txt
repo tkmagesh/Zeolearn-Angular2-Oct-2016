@@ -1,0 +1,75 @@
+public class Calculator{
+    public int Add(int x, int y){
+        return x + y;
+    }
+}
+
+User
+    Calculator calculator = new Calculator();
+    int result = calculator.Add(100,200);
+
+Creator
+
+function add(x,y){
+    //return x + y;
+}
+add(10,20)
+add("10", "20")
+add(10, "abc")
+add(function(){ return 10}, function(){ return "20"})
+add([10,20],[30,40])
+add(10)
+add()
+add(10,20,30,40)
+
+function add(){
+    function parseArg(n){
+        if (Array.isArray(n)) return add.apply(this, n);
+        if (typeof n === 'function') return parseArg(n());
+        return isNaN(n) ? 0 : parseInt(n,10);
+    }
+    return arguments.length <= 1 ? parseArg(arguments[0]) : parseArg(arguments[0]) + add(Array.prototype.slice.call(arguments,1));
+}
+
+
+Approach - 1
+function add(x,y){
+    if (typeof x !== 'number' || typeof y !== 'number')
+        throw new Error('Invalid arguments');
+    return x + y;
+}
+
+jQuery
+
+$ -> function
+
+
+$(document).ready(function init(){  })  => domNode
+$(function init(){})                    => function
+$("#txtName").show()                    => string
+$([domNode1, domNode2])                 => Array of domNodes
+$([10,20,30])                           => Array of non domNodes
+$($)                                    => jQuery object
+
+
+public class Employee{
+    private int id;
+    public int getId(){
+        return id;
+    }
+    public void setId(int value){
+        id = value;
+    }
+
+    public string Name{
+        get {
+        }
+        set{
+        }
+    }
+}
+
+val, html, text
+
+$("#txtName").val() => getter
+$("#txtName").val("John") => setter
