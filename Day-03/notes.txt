@@ -1,0 +1,61 @@
+Composition of Components
+
+Components 
+    presentation
+    behavior logic
+
+
+Web Components
+    technology - framework agnostic
+    Specification
+
+Angular 2
+    Composition of Components
+
+<gmail>
+    <header>
+        <search></search>
+        <profile></profile>
+    </header>
+    <content>
+        <folder-list></folder-list>
+        <mail-list>
+            <mail></mail>
+            <mail></mail>
+            <mail></mail>
+        </mail-list>
+    </content>
+</gmail>
+
+package.json
+    manifest file - metadata information about the application
+        name
+        version
+        author
+        liscence
+        keywords
+        description
+        repository
+        scripts
+        
+        dependencies
+        devDependencies
+
+
+Building Blocks in Angular2
+
+Module
+Component
+    Presentation 
+    Interaction Logic
+    Composable (Input & Output)
+Directive
+    Manipulate DOM Nodes
+Pipe
+    Transform the data for presentation purposes
+Service
+    Non-UI Logic
+Router
+
+
+
