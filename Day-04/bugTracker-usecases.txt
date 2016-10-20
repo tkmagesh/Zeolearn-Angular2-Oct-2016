@@ -1,0 +1,12 @@
+1. Add bugs
+2. List the bugs
+3. Toggle the 'closed' of the bugs
+4. Remove the closed bugs
+5. Display statistics (# of closed bugs / total number of bugs)
+6. Search for bugs
+7. Sort the bugs
+8. Improve the bug display
+9. Persist the bugs in the local storage
+10. Display 'createdAt' for each bug
+11. Persist the bugs in the server
+12. Make the bugs accessible using unique urls (routing)
