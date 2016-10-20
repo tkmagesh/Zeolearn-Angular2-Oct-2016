@@ -1,0 +1,26 @@
+<h3>Salary Calculator</h3>
+<div class="content">
+        <div class="field"> 
+            <label for="">Basic :</label>
+            <input type="text" #txtBasic>
+        </div>
+        <div class="field">
+            <label for="">HRA :</label>
+            <input type="text" #txtHra>
+        </div>
+        <div class="field">
+            <label for="">DA :</label>
+            <input type="text" #txtDa>
+        </div>
+        <div class="field">
+            <label for="">Tax :</label>
+            <input type="range" #rangeTax min="0" max="30" value="0" (change) = "onTaxChange(rangeTax)">
+            <span id="spanTax">{{tax}}</span>
+        </div>
+        <div class="field">
+            <input type="button" value="Calculate" (click) ="onCalculate(txtBasic, txtHra, txtDa, rangeTax)">
+        </div>
+        <div class="field">
+            <div id="divResult">{{salary}}</div>
+        </div>
+    </div>
