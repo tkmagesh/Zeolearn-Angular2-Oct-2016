@@ -16,7 +16,7 @@ var MyAppComponent = (function () {
     MyAppComponent = __decorate([
         core_1.Component({
             selector: 'myapp',
-            template: "\n        <h1>Bug Tracker</h1>\n        <hr />\n        "
+            template: "\n        <h1>Bug Tracker</h1>\n        <hr />\n        <bug-tracker></bug-tracker>\n        "
         }), 
         __metadata('design:paramtypes', [])
     ], MyAppComponent);
