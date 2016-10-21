@@ -6,7 +6,22 @@
 6. Search for bugs - done
 7. Sort the bugs - done
 8. Improve the bug display - done
-9. Persist the bugs in the local storage
-10. Display 'createdAt' for each bug
+9. Persist the bugs in the local storage - assignment
+10. Display 'createdAt' for each bug - assignment
 11. Persist the bugs in the server
 12. Make the bugs accessible using unique urls (routing)
+
+
+window.localStorage
+    * key/value store
+    * Introduce 'id' attribute to the bug
+    * value has to string (JSON.stringify and JSON.parse for serialization and deserialization respectively)
+    * key is unique
+    * APIs
+    =====
+        - setItem(key, value)
+        - getItem(key) //=> value
+        - removeItem(key)
+        - key(index) // value at index
+        - clear() 
+        - length 
