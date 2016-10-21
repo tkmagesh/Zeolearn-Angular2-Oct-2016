@@ -19,9 +19,9 @@ var BugTracker = (function () {
         ];
         this.newBug = '';
         this.searchBug = '';
-        //sortOrder:{name : string, descending : boolean } = {name : '', descending : false};
-        this.sortOrder = '';
+        this.sortOrder = { name: '', descending: false };
     }
+    //sortOrder:string = '';
     BugTracker.prototype.onAddNew = function () {
         this.bugs.push({
             name: this.newBug,
@@ -55,13 +55,14 @@ var BugTracker = (function () {
     };
     BugTracker.prototype.bugsToDisplay = function () {
         var filteredBugs = this.getFilteredBugs();
-        console.log(this.sortOrder);
-        if (this.sortOrder === 'name') {
+        var self = this;
+        if (this.sortOrder.name) {
+            var order = this.sortOrder.descending ? -1 : 1;
             return filteredBugs.sort(function (b1, b2) {
-                if (b1[this.sortOrder] > b2[this.sortOrder])
-                    return 1;
-                if (b1[this.sortOrder] < b2[this.sortOrder])
-                    return -1;
+                if (b1[self.sortOrder.name] > b2[self.sortOrder.name])
+                    return 1 * order;
+                if (b1[self.sortOrder.name] < b2[self.sortOrder.name])
+                    return -1 * order;
                 return 0;
             });
         }
@@ -73,7 +74,7 @@ var BugTracker = (function () {
         core_1.Component({
             selector: 'bug-tracker',
             styleUrls: ['style.css'],
-            template: "\n    <div class=\"content\">\n        <section class=\"stats\">\n            <span class=\"closed\">{{getClosedCount()}}</span>\n            <span> / </span>\n            <span>{{bugs.length}}</span>\n        </section>\n        <section class=\"search\">\n            <label for=\"\">Search :</label>\n            <input type=\"text\" [(ngModel)]=\"searchBug\">\n            <label for=\"\">Is Closed :</label>\n            <input type=\"checkbox\" >\n        </section>\n        <section class=\"sort\">\n            <label for=\"\">Order By :</label>\n            <input type=\"text\" [(ngModel)] = \"sortOrder\">\n            <label for=\"\">Descending ? :</label>\n            <input type=\"checkbox\" >\n        </section>\n        <section class=\"edit\">\n            <label for=\"\">Bug :</label>\n            <input type=\"text\" [(ngModel)]=\"newBug\">\n            <input type=\"button\" value=\"Add New\" (click)=\"onAddNew()\">\n        </section>\n        <section class=\"list\">\n            <ol>\n               <li [className]=\"bug.isClosed ? 'closed' : ''\" *ngFor=\"let bug of bugsToDisplay()\" (click) = \"toggle(bug)\">\n                    {{bug.name}}-{{bug.isClosed}}\n               </li>\n            </ol>\n            <input type=\"button\" value=\"Remove Closed\" (click)=\"removeClosed()\">\n        </section>\n    </div>\n    "
+            template: "\n    <div class=\"content\">\n        <section class=\"stats\">\n            <span class=\"closed\">{{getClosedCount()}}</span>\n            <span> / </span>\n            <span>{{bugs.length}}</span>\n        </section>\n        <section class=\"search\">\n            <label for=\"\">Search :</label>\n            <input type=\"text\" [(ngModel)]=\"searchBug\">\n            <label for=\"\">Is Closed :</label>\n            <input type=\"checkbox\" >\n        </section>\n        <section class=\"sort\">\n            <label for=\"\">Order By :</label>\n            <input type=\"text\" [(ngModel)] = \"sortOrder.name\">\n            <label for=\"\">Descending ? :</label>\n            <input type=\"checkbox\" [(ngModel)] = \"sortOrder.descending\">\n        </section>\n        <section class=\"edit\">\n            <label for=\"\">Bug :</label>\n            <input type=\"text\" [(ngModel)]=\"newBug\">\n            <input type=\"button\" value=\"Add New\" (click)=\"onAddNew()\">\n        </section>\n        <section class=\"list\">\n            <ol>\n               <li [className]=\"bug.isClosed ? 'closed' : ''\" *ngFor=\"let bug of bugsToDisplay()\" (click) = \"toggle(bug)\">\n                    {{bug.name}}-{{bug.isClosed}}\n               </li>\n            </ol>\n            <input type=\"button\" value=\"Remove Closed\" (click)=\"removeClosed()\">\n        </section>\n    </div>\n    "
         }), 
         __metadata('design:paramtypes', [])
     ], BugTracker);

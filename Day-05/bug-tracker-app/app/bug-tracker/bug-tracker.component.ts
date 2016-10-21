@@ -17,9 +17,9 @@ import {Component} from '@angular/core';
         </section>
         <section class="sort">
             <label for="">Order By :</label>
-            <input type="text" [(ngModel)] = "sortOrder">
+            <input type="text" [(ngModel)] = "sortOrder.name">
             <label for="">Descending ? :</label>
-            <input type="checkbox" >
+            <input type="checkbox" [(ngModel)] = "sortOrder.descending">
         </section>
         <section class="edit">
             <label for="">Bug :</label>
@@ -49,8 +49,8 @@ export class BugTracker{
 
     searchBug:string = '';
 
-    //sortOrder:{name : string, descending : boolean } = {name : '', descending : false};
-    sortOrder:string = '';
+    sortOrder:{name : string, descending : boolean } = {name : '', descending : false};
+    //sortOrder:string = '';
 
     onAddNew(){
         this.bugs.push({
@@ -89,11 +89,12 @@ export class BugTracker{
 
     bugsToDisplay(){
         let filteredBugs = this.getFilteredBugs();
-        console.log(this.sortOrder);
-        if (this.sortOrder === 'name'){
+        var self = this;
+        if (this.sortOrder.name){
+            var order = this.sortOrder.descending ? -1 : 1;
             return filteredBugs.sort(function(b1, b2){
-                if (b1[this.sortOrder] > b2[this.sortOrder]) return 1;
-                if (b1[this.sortOrder] < b2[this.sortOrder]) return -1;
+                if (b1[self.sortOrder.name] > b2[self.sortOrder.name]) return 1 * order;
+                if (b1[self.sortOrder.name] < b2[self.sortOrder.name]) return -1 * order;
                 return 0;
             } )
         } else {
