@@ -17,7 +17,7 @@ import {Component} from '@angular/core';
         </section>
         <section class="sort">
             <label for="">Order By :</label>
-            <input type="text" >
+            <input type="text" [(ngModel)] = "sortOrder">
             <label for="">Descending ? :</label>
             <input type="checkbox" >
         </section>
@@ -28,7 +28,7 @@ import {Component} from '@angular/core';
         </section>
         <section class="list">
             <ol>
-               <li [className]="bug.isClosed ? 'closed' : ''" *ngFor="let bug of filteredBugs()" (click) = "toggle(bug)">
+               <li [className]="bug.isClosed ? 'closed' : ''" *ngFor="let bug of bugsToDisplay()" (click) = "toggle(bug)">
                     {{bug.name}}-{{bug.isClosed}}
                </li>
             </ol>
@@ -48,6 +48,9 @@ export class BugTracker{
     newBug:string = '';
 
     searchBug:string = '';
+
+    //sortOrder:{name : string, descending : boolean } = {name : '', descending : false};
+    sortOrder:string = '';
 
     onAddNew(){
         this.bugs.push({
@@ -73,7 +76,7 @@ export class BugTracker{
         },0)
     }
 
-    filteredBugs(){
+    getFilteredBugs(){
         return this.searchBug ? this.bugs.filter(bug => bug.name.indexOf(this.searchBug) !== -1) : this.bugs; 
         /*
         if (this.searchBug){
@@ -82,5 +85,19 @@ export class BugTracker{
             return this.bugs;
         }
         */
+    }
+
+    bugsToDisplay(){
+        let filteredBugs = this.getFilteredBugs();
+        console.log(this.sortOrder);
+        if (this.sortOrder === 'name'){
+            return filteredBugs.sort(function(b1, b2){
+                if (b1[this.sortOrder] > b2[this.sortOrder]) return 1;
+                if (b1[this.sortOrder] < b2[this.sortOrder]) return -1;
+                return 0;
+            } )
+        } else {
+            return filteredBugs;
+        }
     }
 }

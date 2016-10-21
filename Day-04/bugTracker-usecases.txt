@@ -3,7 +3,7 @@
 3. Toggle the 'closed' of the bugs - done
 4. Remove the closed bugs - done
 5. Display statistics (# of closed bugs / total number of bugs) - done
-6. Search for bugs
+6. Search for bugs - done
 7. Sort the bugs
 8. Improve the bug display
 9. Persist the bugs in the local storage
