@@ -9,8 +9,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var bugOperations_1 = require('./services/bugOperations');
 var BugTracker = (function () {
-    function BugTracker() {
+    //sortOrder:string = '';
+    function BugTracker(bugOperations) {
+        this.bugOperations = bugOperations;
         this.bugs = [
             { name: 'User action not recognized', isClosed: false },
             { name: 'Server communication failure', isClosed: false },
@@ -21,15 +24,11 @@ var BugTracker = (function () {
         this.searchBug = '';
         this.sortOrder = { name: '', descending: false };
     }
-    //sortOrder:string = '';
     BugTracker.prototype.onAddNew = function () {
-        this.bugs.push({
-            name: this.newBug,
-            isClosed: false
-        });
+        this.bugs.push(this.bugOperations.createNew(this.newBug));
     };
     BugTracker.prototype.toggle = function (bug) {
-        bug.isClosed = !bug.isClosed;
+        this.bugOperations.toggle(bug);
     };
     BugTracker.prototype.removeClosed = function () {
         for (var i = this.bugs.length - 1; i >= 0; i--) {
@@ -76,7 +75,7 @@ var BugTracker = (function () {
             styleUrls: ['style.css'],
             template: "\n    <div class=\"content\">\n        <section class=\"stats\">\n            <span class=\"closed\">{{getClosedCount()}}</span>\n            <span> / </span>\n            <span>{{bugs.length}}</span>\n        </section>\n        <section class=\"search\">\n            <label for=\"\">Search :</label>\n            <input type=\"text\" [(ngModel)]=\"searchBug\">\n            <label for=\"\">Is Closed :</label>\n            <input type=\"checkbox\" >\n        </section>\n        <section class=\"sort\">\n            <label for=\"\">Order By :</label>\n            <input type=\"text\" [(ngModel)] = \"sortOrder.name\">\n            <label for=\"\">Descending ? :</label>\n            <input type=\"checkbox\" [(ngModel)] = \"sortOrder.descending\">\n        </section>\n        <section class=\"edit\">\n            <label for=\"\">Bug :</label>\n            <input type=\"text\" [(ngModel)]=\"newBug\">\n            <input type=\"button\" value=\"Add New\" (click)=\"onAddNew()\">\n        </section>\n        <section class=\"list\">\n            <ol>\n               <li [className]=\"bug.isClosed ? 'closed' : ''\" *ngFor=\"let bug of bugsToDisplay()\" (click) = \"toggle(bug)\">\n                    {{bug.name}}-{{bug.isClosed}}\n               </li>\n            </ol>\n            <input type=\"button\" value=\"Remove Closed\" (click)=\"removeClosed()\">\n        </section>\n    </div>\n    "
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [bugOperations_1.BugOperations])
     ], BugTracker);
     return BugTracker;
 }());

@@ -4,11 +4,13 @@ import {MyAppComponent} from './app.component';
 import {BrowserModule} from '@angular/platform-browser';
 
 import {BugTracker} from './bug-tracker/bug-tracker.component';
+import {BugOperations} from './bug-tracker/services/bugOperations';
 
 @NgModule({
     imports : [BrowserModule, FormsModule],
     bootstrap : [MyAppComponent],
-    declarations : [MyAppComponent, BugTracker]
+    declarations : [MyAppComponent, BugTracker],
+    providers  : [BugOperations]
 })
 export class MyAppModule{
 

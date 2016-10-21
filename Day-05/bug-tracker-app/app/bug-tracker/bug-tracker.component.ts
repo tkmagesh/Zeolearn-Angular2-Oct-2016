@@ -1,4 +1,6 @@
 import {Component} from '@angular/core';
+import {BugOperations} from './services/bugOperations';
+
 @Component({
     selector : 'bug-tracker',
     styleUrls : ['style.css'],
@@ -52,15 +54,16 @@ export class BugTracker{
     sortOrder:{name : string, descending : boolean } = {name : '', descending : false};
     //sortOrder:string = '';
 
+    constructor(private bugOperations : BugOperations){
+        
+    }
+
     onAddNew(){
-        this.bugs.push({
-            name : this.newBug,
-            isClosed : false
-        });
+        this.bugs.push(this.bugOperations.createNew(this.newBug));
     }
 
     toggle(bug){
-        bug.isClosed = !bug.isClosed;
+        this.bugOperations.toggle(bug);
     }
     
     removeClosed(){
