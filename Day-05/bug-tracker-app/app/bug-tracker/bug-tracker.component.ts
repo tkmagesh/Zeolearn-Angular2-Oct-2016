@@ -7,7 +7,7 @@ import {BugOperations} from './services/bugOperations';
     template : `
     <div class="content">
         <section class="stats">
-            <span class="closed">{{getClosedCount()}}</span>
+            <span class="closed">{{bugs | closedCount}}</span>
             <span> / </span>
             <span>{{bugs.length}}</span>
         </section>
@@ -31,7 +31,7 @@ import {BugOperations} from './services/bugOperations';
         <section class="list">
             <ol>
                <li [className]="bug.isClosed ? 'closed' : ''" *ngFor="let bug of bugsToDisplay()" (click) = "toggle(bug)">
-                    {{bug.name}}-{{bug.isClosed}}
+                    {{bug.name | trimText}}
                </li>
             </ol>
             <input type="button" value="Remove Closed" (click)="removeClosed()">
@@ -73,11 +73,7 @@ export class BugTracker{
         }
     }
 
-    getClosedCount(){
-        return this.bugs.reduce(function(result, bug){
-            return bug.isClosed ? ++result : result;
-        },0)
-    }
+    
 
     getFilteredBugs(){
         return this.searchBug ? this.bugs.filter(bug => bug.name.indexOf(this.searchBug) !== -1) : this.bugs; 
