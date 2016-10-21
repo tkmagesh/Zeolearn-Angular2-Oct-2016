@@ -30,7 +30,7 @@ import {BugOperations} from './services/bugOperations';
         </section>
         <section class="list">
             <ol>
-               <li [className]="bug.isClosed ? 'closed' : ''" *ngFor="let bug of bugsToDisplay()" (click) = "toggle(bug)">
+               <li [className]="bug.isClosed ? 'closed' : ''" *ngFor="let bug of (bugs | filter:searchBug | sort:sortOrder)" (click) = "toggle(bug)">
                     {{bug.name | trimText}}
                </li>
             </ol>
@@ -70,34 +70,6 @@ export class BugTracker{
         for(let i:number = this.bugs.length-1; i >=0; i--){
             if (this.bugs[i].isClosed)
                 this.bugs.splice(i,1);
-        }
-    }
-
-    
-
-    getFilteredBugs(){
-        return this.searchBug ? this.bugs.filter(bug => bug.name.indexOf(this.searchBug) !== -1) : this.bugs; 
-        /*
-        if (this.searchBug){
-            return this.bugs.filter(bug => bug.name.indexOf(this.searchBug) !== -1);
-        } else {
-            return this.bugs;
-        }
-        */
-    }
-
-    bugsToDisplay(){
-        let filteredBugs = this.getFilteredBugs();
-        var self = this;
-        if (this.sortOrder.name){
-            var order = this.sortOrder.descending ? -1 : 1;
-            return filteredBugs.sort(function(b1, b2){
-                if (b1[self.sortOrder.name] > b2[self.sortOrder.name]) return 1 * order;
-                if (b1[self.sortOrder.name] < b2[self.sortOrder.name]) return -1 * order;
-                return 0;
-            } )
-        } else {
-            return filteredBugs;
         }
     }
 }

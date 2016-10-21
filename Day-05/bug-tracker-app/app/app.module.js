@@ -16,6 +16,8 @@ var bug_tracker_component_1 = require('./bug-tracker/bug-tracker.component');
 var bugOperations_1 = require('./bug-tracker/services/bugOperations');
 var trimText_1 = require('./bug-tracker/pipes/trimText');
 var closedCount_1 = require('./bug-tracker/pipes/closedCount');
+var filter_1 = require('./bug-tracker/pipes/filter');
+var sort_1 = require('./bug-tracker/pipes/sort');
 var MyAppModule = (function () {
     function MyAppModule() {
     }
@@ -23,7 +25,7 @@ var MyAppModule = (function () {
         core_1.NgModule({
             imports: [platform_browser_1.BrowserModule, forms_1.FormsModule],
             bootstrap: [app_component_1.MyAppComponent],
-            declarations: [app_component_1.MyAppComponent, bug_tracker_component_1.BugTracker, trimText_1.TrimText, closedCount_1.ClosedCount],
+            declarations: [app_component_1.MyAppComponent, bug_tracker_component_1.BugTracker, trimText_1.TrimText, closedCount_1.ClosedCount, filter_1.Filter, sort_1.Sort],
             providers: [bugOperations_1.BugOperations]
         }), 
         __metadata('design:paramtypes', [])
