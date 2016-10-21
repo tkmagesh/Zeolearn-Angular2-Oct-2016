@@ -5,21 +5,21 @@ import {Component} from '@angular/core';
     template : `
     <div class="content">
         <section class="stats">
-            <span class="closed">2</span>
+            <span class="closed">{{getClosedCount()}}</span>
             <span> / </span>
             <span>{{bugs.length}}</span>
         </section>
         <section class="search">
             <label for="">Search :</label>
-            <input type="text" name="" id="">
+            <input type="text" [(ngModel)]="searchBug">
             <label for="">Is Closed :</label>
-            <input type="checkbox" name="" id="">
+            <input type="checkbox" >
         </section>
         <section class="sort">
             <label for="">Order By :</label>
-            <input type="text" name="" id="">
+            <input type="text" >
             <label for="">Descending ? :</label>
-            <input type="checkbox" name="" id="">
+            <input type="checkbox" >
         </section>
         <section class="edit">
             <label for="">Bug :</label>
@@ -28,7 +28,7 @@ import {Component} from '@angular/core';
         </section>
         <section class="list">
             <ol>
-               <li [className]="bug.isClosed ? 'closed' : ''" *ngFor="let bug of bugs" (click) = "toggle(bug)">
+               <li [className]="bug.isClosed ? 'closed' : ''" *ngFor="let bug of filteredBugs()" (click) = "toggle(bug)">
                     {{bug.name}}-{{bug.isClosed}}
                </li>
             </ol>
@@ -47,6 +47,8 @@ export class BugTracker{
 
     newBug:string = '';
 
+    searchBug:string = '';
+
     onAddNew(){
         this.bugs.push({
             name : this.newBug,
@@ -63,5 +65,22 @@ export class BugTracker{
             if (this.bugs[i].isClosed)
                 this.bugs.splice(i,1);
         }
+    }
+
+    getClosedCount(){
+        return this.bugs.reduce(function(result, bug){
+            return bug.isClosed ? ++result : result;
+        },0)
+    }
+
+    filteredBugs(){
+        return this.searchBug ? this.bugs.filter(bug => bug.name.indexOf(this.searchBug) !== -1) : this.bugs; 
+        /*
+        if (this.searchBug){
+            return this.bugs.filter(bug => bug.name.indexOf(this.searchBug) !== -1);
+        } else {
+            return this.bugs;
+        }
+        */
     }
 }
