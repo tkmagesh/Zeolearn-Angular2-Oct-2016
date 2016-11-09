@@ -9,6 +9,16 @@
       "name": "Providers are not injecting",
       "isClosed": false,
       "id": 4
+    },
+    {
+      "id": 5,
+      "name": "Unable to go to a route",
+      "isClosed": false
+    },
+    {
+      "id": 6,
+      "name": "User actions not recognized",
+      "isClosed": false
     }
   ],
   "employees": [
