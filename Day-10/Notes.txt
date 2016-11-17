@@ -1,0 +1,24 @@
+Testing
+=======
+    Unit Testing
+
+    User Acceptance Testing (End to End Testing)
+
+Manage
+
+QUnit
+
+Calculator
+    - add(x,y)
+    - subtract(x,y)
+
+Jasmine
+    describe, beforeEach, it, expect, spy, test runner
+
+Mocha
+    describe, beforeEach, it, chai.js (assert, expect, should), sinon.js, 10
+
+Karma
+
+Protractor
+    Extension to Selenium Web Driver API (browser automation)
